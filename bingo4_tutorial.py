@@ -45,7 +45,7 @@ def execute_generational_steps():
   communicator = MPI.COMM_WORLD
   rank = MPI.COMM_WORLD.Get_rank()
 
-  data = pd.read_csv('../genetic-prog-data/F_data/CSV/RajuNewman/fp_2var_test9_py.csv').as_matrix()
+  data = pd.read_csv('./data/fp_2var_test9_py.csv').as_matrix()
   x = data[:,0:2]
   y = data[:2]
 
