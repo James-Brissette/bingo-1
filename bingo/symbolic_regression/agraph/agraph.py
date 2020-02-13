@@ -46,6 +46,7 @@ Node      Name                                     Math
 import logging
 import numpy as np
 
+from .stackgenerator import stackGenerator
 from .maps import STACK_PRINT_MAP, LATEX_PRINT_MAP, CONSOLE_PRINT_MAP
 from ..equation import Equation
 from ...local_optimizers import continuous_local_opt
@@ -118,6 +119,39 @@ class AGraph(Equation, continuous_local_opt.ChromosomeInterface):
         """Notify individual of inplace modification of its command array"""
         self._fitness = None
         self._fit_set = False
+        
+        """
+        print("Command Stack:")
+        print(self._command_array)
+        print("Constant Stack:")
+        print(self._constants)
+        """
+        console_string = self.get_console_string()        
+        print("Console String: ", console_string)
+        if (not console_string == '?'): 
+            """print("Latex String: ", self.get_latex_string())
+
+            print("")
+            """
+            generator = stackGenerator()
+            generator.generateDAG(console_string)
+            """
+            print("Generated Stack:")
+            print(generator.stack)
+            print("Generated Constants:")
+            print(generator.constantStack)
+            print("")
+
+            print("Distributing Generated Stack into Command Stack:")
+            """
+            self._command_array = generator.distributeArray(self._command_array,generator.stack)
+            self._constants = generator.constantStack
+            """print(self._command_array)
+
+            #print("Sympy String: ", self.get_sympy_string())
+
+            input("")
+            """
         self._process_modified_command_array()
 
     def force_renumber_constants(self):
@@ -385,8 +419,13 @@ class AGraph(Equation, continuous_local_opt.ChromosomeInterface):
             else:
                 tmp_str = str(self._constants[param1])
         else:
-            tmp_str = format_dict[node].format(str_list[param1],
+            try:
+                tmp_str = format_dict[node].format(str_list[param1],
                                                str_list[param2])
+            except:
+                print("node = ",node,", param1=", param1, ", param2=", param2)
+                tmp_str = "?"
+                
         return tmp_str
 
     def distance(self, chromosome):
