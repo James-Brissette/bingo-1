@@ -230,22 +230,6 @@ class stackGenerator():
 
                 return commandStack
         
-    
-            
-        
-    
-            
-            
-    
-generator = stackGenerator()
-#func = '(-X_0 + cos(X_0))^(2*X_0)*cos(X_0)^75659.26967056174'
-func = '(2 - (2))^(2 - (2)) + (2 - (2))^(2 - (2))'
-generator.generateDAG(func)
-print('func: ',func)
-print("stack: ",generator.stack)
-print("constantStack: ",generator.constantStack)
-print("terminalStack: ",generator.terminalStack)
-
 
 """================ Simplification Test ================
         print("Command Stack:")
