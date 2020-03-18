@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sbatch bingo-tests.script bingo_simplification_test.py
+sbatch bingo-tests.script bingo_base_performance_test.py
+
+watch -n 1 "squeue -u u0666493"

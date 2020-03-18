@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --job-name=F_test1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=10G
+#SBATCH --time=01:00:00
+#SBATCH --export=ALL
+#SBATCH --account=hochhalter
+#SBATCH --partition=kingspeak
+
+ulimit -c unlimited -s
+
+module load anaconda3/5.1.0
+. /uufs/chpc.utah.edu/sys/installdir/anaconda3/5.1.0/etc/profile.d/conda.sh
+conda activate bingo3
+source activate bingo3
+module load gcc impi
+
+time mpirun -np $SLURM_NTASKS python $1
+

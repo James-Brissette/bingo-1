@@ -152,7 +152,7 @@ class AGraph(Equation, continuous_local_opt.ChromosomeInterface):
             #print("Fail")
             #input("")
             return 
-            simplified_string = console_string 
+            implified_string = console_string 
             #print("FAIL: Console String:   ",console_string)
             #print("FAIL: Simplified String:",simplified_string)
             
